@@ -119,12 +119,19 @@ TableModel.prototype =
 
             forEachRow : function (f) {
 		/* A COMPLETER */
+                for (var i = 0; i < this.height; i++){
+                    var ligne = idxToRow(i);
+                    f(ligne);
+                }
             },
 
             forEachCol : function (f) {
 		/* A COMPLETER */
+                for (var i = 0; i <this.width; i++){
+                    var colonne = idxToCol(i);
+                    f(colonne);
+                }
             }
-
         }
 
 }) ();

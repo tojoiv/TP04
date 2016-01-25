@@ -37,7 +37,50 @@ var TableView = function (id, tableModel) {
 TableView.prototype.createTable = function () {
     var model = this.model;
     var table = this.table;
-
+    
+    while(table.firstChild){
+        table.removeChild(table.firstChild);
+    };
+    
+    var thead = document.createElement("thead");
+    table.appendChild(thead);
+    
+    var tr = document.createElement("tr");
+    thead.appendChild(tr);
+    
+    var th = document.createElement("th");
+    tr.appendChild(th);
+    var identificateur = document.createTextNode("");
+    th.appendChild(identificateur);
+    
+    model.forEachCol( function (colonne) {     
+        var th = document.createElement("th");
+        var identificateur = document.createTextNode(colonne);
+        th.appendChild(identificateur);
+        tr.appendChild(th);
+    });
+    
+    
+    var tbody = document.createElement("tbody");
+    table.appendChild(tbody);
+         
+    model.forEachRow ( function (ligne){
+        var tr = document.createElement("tr");
+        tbody.appendChild(tr);        
+        var td = document.createElement("td");
+        tr.appendChild(td);
+        var ident = document.createTextNode(ligne);
+        td.appendChild(ident);
+        
+        model.forEachCol( function (colonne){
+            var td = document.createElement("td");
+            tr.appendChild(td);
+            var ident = document.createTextNode("");
+            td.appendChild(ident);
+        });
+    });
+            
+    
 
     /* A COMPLETER */
 

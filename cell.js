@@ -12,15 +12,22 @@ Cell.prototype = {
 
     setValue : function (v) {
         this.value = v;
+        
+    if (typeof this.view.notify == "function")
+        this.view.notify(this);
 	/* A COMPLETER */
     },
 
-    getView : function () { /* A COMPLETER */ },
-    setView : function (v) {  /* A COMPLETER */ },
+    getView : function () { return this.view; },
+    setView : function (v) {  this.view = v },
 
-    getFormula : function () {  /* A COMPLETER */ },
+    getFormula : function () {  this.formula },
 
     setFormula : function (s) {
+        //var f = new Formula();
+        var f = Formula.parse(s);
+        this.formula = f;
+        this.setValue(f.eval());
 	/* A COMPLETER */
     },
 

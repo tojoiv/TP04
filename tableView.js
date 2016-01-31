@@ -85,8 +85,7 @@ TableView.prototype.createTable = function () {
                 td.getAttribute("class");
                 if (td.getAttribute("class") === "selected"){
                     return true;
-                }
-                
+                }                
                 return false;
             };
             td.selected = function (b){
@@ -94,6 +93,7 @@ TableView.prototype.createTable = function () {
                 else td.setAttribute("class");
             };
             
+            model.getCell(colonne, ligne).setView(td);            
             
             tr.appendChild(td);
             var ident = document.createTextNode(model.getCell(colonne, ligne).getValue());

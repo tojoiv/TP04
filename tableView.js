@@ -22,7 +22,7 @@ var TableView = function (id, tableModel) {
     this.input = document.createElement("input");
     this.input.type = "text";
     this.div.appendChild(this.input);
-    
+   
     //Création du bouton
     this.button = document.createElement("button");
     this.button.innerHTML = "&#10003;";  //Le caractère 'check-mark'
@@ -75,9 +75,28 @@ TableView.prototype.createTable = function () {
         
         model.forEachCol( function (colonne){
             var td = document.createElement("td");
+            td.row = ligne ;
+            td.col = colonne;
+            td.notify = function (cell){
+                var ident = document.createTextNode(cell.getValue());
+                td.appendChild(ident);
+            };
+            td.isSelected = function (){
+                td.getAttribute("class");
+                if (td.getAttribute("class") === "selected"){
+                    return true;
+                }
+                
+                return false;
+            };
+            td.selected = function (b){
+                if (b) td.setAttribute("class", "selected");
+                else td.setAttribute("class");
+            };
+            
+            
             tr.appendChild(td);
             var ident = document.createTextNode(model.getCell(colonne, ligne).getValue());
-            //model.getCell(colonne, ligne).getValue();
             td.appendChild(ident);
         });
     });

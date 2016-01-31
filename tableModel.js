@@ -10,7 +10,7 @@ function TableModel (w, h) {
         }
     }
     
-    this.cells[4][5].setValue("12");
+    //this.cells[4][5].setValue("12");
 
 
 };

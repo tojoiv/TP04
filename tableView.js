@@ -22,7 +22,7 @@ var TableView = function (id, tableModel) {
     this.input = document.createElement("input");
     this.input.type = "text";
     this.div.appendChild(this.input);
-
+    
     //Création du bouton
     this.button = document.createElement("button");
     this.button.innerHTML = "&#10003;";  //Le caractère 'check-mark'
@@ -55,8 +55,9 @@ TableView.prototype.createTable = function () {
     
     model.forEachCol( function (colonne) {     
         var th = document.createElement("th");
-        var identificateur = document.createTextNode(colonne);
-        th.appendChild(identificateur);
+        //var identificateur = document.createTextNode(colonne);
+        //th.appendChild(identificateur);
+        th.innerHTML = colonne;
         tr.appendChild(th);
     });
     
@@ -75,7 +76,8 @@ TableView.prototype.createTable = function () {
         model.forEachCol( function (colonne){
             var td = document.createElement("td");
             tr.appendChild(td);
-            var ident = document.createTextNode("");
+            var ident = document.createTextNode(model.getCell(colonne, ligne).getValue());
+            //model.getCell(colonne, ligne).getValue();
             td.appendChild(ident);
         });
     });

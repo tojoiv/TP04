@@ -9,6 +9,8 @@ function TableModel (w, h) {
             this.cells[i][j] = new Cell();
         }
     }
+    
+    this.cells[4][5].setValue("12");
 
 
 };
